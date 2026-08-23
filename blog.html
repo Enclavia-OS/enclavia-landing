@@ -187,7 +187,7 @@
             <ol class="list-decimal list-inside space-y-2 ml-4">
                 <li><strong class="text-white">Cryptographic Attestation:</strong> Every decision generates an AWS NSM Attestation Document proving the policy ran untampered inside the secure hardware. Not a log entry — a cryptographic proof.</li>
                 <li><strong class="text-white">Rogue Insider Protection:</strong> The policy is bound to the TEE's PCR0 hash. If anyone — even a compromised DevOps engineer — tampers with <code class="bg-slate-800 text-brand px-1.5 py-0.5 rounded text-sm">policy.json</code>, the hash changes and the platform refuses to attest the enclave. Runtime policies are only enforced with a valid Enclavia signature.</li>
-                <li><strong class="text-white">Zero-Code Integration:</strong> Your existing agent runs unchanged. Enclavia acts as an egress proxy. No SDK imports. No core logic changes.</li>
+                <li><strong class="text-white">Flexible Integration:</strong> Use the <code class="bg-slate-800 text-brand px-1.5 py-0.5 rounded text-sm">@enclavia-os/cli</code> for scripts and smoke tests, call the stable JSON HTTP contract from any language, or use the Python hook to keep an existing agent's core logic unchanged.</li>
             </ol>
 
             <h3 class="text-2xl font-bold text-white mt-12 mb-4">A Concrete Example</h3>
