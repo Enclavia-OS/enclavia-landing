@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security | Enclavia OS</title>
+    <meta name="description" content="Understand Enclavia's self-hosted architecture, policy enforcement boundary, employee Chat privacy model, and security responsibilities.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: {
+            colors: { brand: '#3b82f6', darkbg: '#020617', darkcard: '#0f172a' },
+            fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Menlo', 'monospace'] }
+        } } }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-darkbg text-slate-300 font-sans antialiased">
+    <nav class="sticky top-0 bg-darkbg/90 backdrop-blur-md z-50 border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="text-lg font-bold text-white">Enclavia <span class="text-brand font-mono text-xs font-normal">OS</span></a>
+            <div class="flex items-center gap-5 text-sm">
+                <a href="index.html" class="hover:text-white">Home</a>
+                <a href="https://docs.enclavia.xyz" class="hover:text-white">Docs</a>
+                <a href="https://app.enclavia.xyz" class="text-brand hover:text-white">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+    <main class="max-w-4xl mx-auto px-6 py-16">
+        <span class="inline-block bg-slate-800 text-brand text-xs font-mono px-3 py-1 rounded-full mb-5 border border-slate-700">Enterprise security</span>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-5">Security boundaries you can inspect</h1>
+        <p class="text-lg text-slate-400 max-w-3xl mb-12">Enclavia provides a self-hosted control plane for autonomous agents and employee AI access. Signed policy, isolated evaluation, identity, usage controls, and audit evidence work together inside your AWS environment.</p>
+
+        <div class="grid md:grid-cols-2 gap-5 mb-12">
+            <section class="bg-darkcard p-6 rounded-lg border border-slate-800">
+                <h2 class="text-xl font-bold text-white mb-2">Agent enforcement</h2>
+                <p class="text-sm text-slate-400">Authenticate workload traffic, evaluate outbound targets and DLP rules, and record the decision before the request continues.</p>
+            </section>
+            <section class="bg-darkcard p-6 rounded-lg border border-slate-800">
+                <h2 class="text-xl font-bold text-white mb-2">Employee AI governance</h2>
+                <p class="text-sm text-slate-400">Give teams approved model access with OIDC SSO, BYOK providers, quotas, budgets, routing controls, usage visibility, and configurable Chat retention.</p>
+            </section>
+        </div>
+
+        <section class="border-t border-slate-800 pt-10 mb-10">
+            <h2 class="text-2xl font-bold text-white mb-5">What Enclavia provides</h2>
+            <ul class="space-y-3 text-sm text-slate-400 list-disc list-inside">
+                <li>Runtime policy proposals, two-person approval, signatures, version history, simulation, and rollback requests.</li>
+                <li>AWS Nitro Enclave evaluation with attestation records for protected traffic.</li>
+                <li>Hash-chained administrative audit logs with integrity verification and evidence exports.</li>
+                <li>Workload, team, user, model, and organization-level usage controls.</li>
+                <li>Self-hosted deployment so customer traffic and databases stay in the customer AWS account.</li>
+            </ul>
+        </section>
+
+        <section class="border-t border-slate-800 pt-10 mb-10">
+            <h2 class="text-2xl font-bold text-white mb-5">What attestation does not prove</h2>
+            <p class="text-sm text-slate-400 mb-4">Attestation provides evidence about enclave measurement and execution context. It does not prove that a customer policy is correct, that an allowed action is safe, that a model provider is trustworthy, or that surrounding customer infrastructure is uncompromised.</p>
+            <p class="text-sm text-slate-400">Enclavia supports compliance evidence collection. It does not make an organization SOC 2 compliant by itself.</p>
+        </section>
+
+        <section class="border-t border-slate-800 pt-10 mb-10">
+            <h2 class="text-2xl font-bold text-white mb-5">Employee Chat privacy</h2>
+            <p class="text-sm text-slate-400">Chat messages are stored in the customer control-plane database for user history and usage attribution. Organization admins can configure unlimited retention or a 7, 30, 90, 365, or 730-day inactivity window. Expired chats and messages are deleted server-side, while usage records remain for metering and audit.</p>
+        </section>
+
+        <section class="border-t border-slate-800 pt-10 mb-10">
+            <h2 class="text-2xl font-bold text-white mb-5">Procurement and compliance checklist</h2>
+            <p class="text-sm text-slate-400 mb-6">Capabilities enterprises evaluate during security review, all part of the self-hosted deployment.</p>
+            <div class="grid md:grid-cols-2 gap-5">
+                <div class="bg-darkcard p-5 rounded-lg border border-slate-800">
+                    <h3 class="text-sm font-bold text-white mb-2">Identity and access</h3>
+                    <ul class="text-sm text-slate-400 list-disc list-inside space-y-1">
+                        <li>OIDC single sign-on with per-organization identity providers</li>
+                        <li>SCIM 2.0 user and group provisioning, with soft deactivation</li>
+                        <li>TOTP multi-factor authentication, enforceable org-wide</li>
+                        <li>Role-based access: Super Admin, Org Admin, Auditor</li>
+                    </ul>
+                </div>
+                <div class="bg-darkcard p-5 rounded-lg border border-slate-800">
+                    <h3 class="text-sm font-bold text-white mb-2">Audit and evidence</h3>
+                    <ul class="text-sm text-slate-400 list-disc list-inside space-y-1">
+                        <li>Hash-chained administrative audit log with integrity verification</li>
+                        <li>SOC 2 evidence bundle export (JSON) and CSV exports</li>
+                        <li>Policy approval history, incident timelines, attestation records</li>
+                        <li>Two-person approval with Ed25519-signed policy enforcement</li>
+                    </ul>
+                </div>
+                <div class="bg-darkcard p-5 rounded-lg border border-slate-800">
+                    <h3 class="text-sm font-bold text-white mb-2">Data controls</h3>
+                    <ul class="text-sm text-slate-400 list-disc list-inside space-y-1">
+                        <li>Self-hosted: traffic and database stay in your AWS account</li>
+                        <li>Configurable employee-chat retention (7 to 730 days)</li>
+                        <li>Content policy rules with block, redact, warn, and audit actions</li>
+                        <li>Workload API keys hashed at rest; provider keys encrypted at rest</li>
+                    </ul>
+                </div>
+                <div class="bg-darkcard p-5 rounded-lg border border-slate-800">
+                    <h3 class="text-sm font-bold text-white mb-2">Deployment</h3>
+                    <ul class="text-sm text-slate-400 list-disc list-inside space-y-1">
+                        <li>Terraform module with hardened defaults (private hosts, no SSH, RDS deletion protection)</li>
+                        <li>Nitro Enclave evaluation with NSM attestation records</li>
+                        <li>Policy signing key custody: Enclavia-held or customer-held</li>
+                        <li>Documented backup, restore, and key-rotation procedures</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-4">
+                Detailed architecture and deployment security review materials are available on request.
+                Machine-readable disclosure: <a href="/.well-known/security.txt" class="text-brand hover:underline">/.well-known/security.txt</a>.
+            </p>
+        </section>
+
+        <section class="bg-slate-900 p-6 rounded-lg border border-slate-800">
+            <h2 class="text-xl font-bold text-white mb-2">Security review and disclosure</h2>
+            <p class="text-sm text-slate-400 mb-4">Request the detailed architecture and deployment security review materials, or report a vulnerability privately.</p>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="mailto:security@enclavia.xyz?subject=Enclavia%20security%20review" class="bg-brand hover:bg-blue-500 text-white px-4 py-2 rounded-md font-bold text-sm text-center">Request security review</a>
+                <a href="mailto:security@enclavia.xyz?subject=Responsible%20disclosure" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-md font-bold text-sm text-center border border-slate-700">Report a vulnerability</a>
+            </div>
+        </section>
+    </main>
+    <footer class="py-8 px-6 border-t border-slate-800 text-center text-sm text-slate-500">© 2026 Enclavia OS. All rights reserved.</footer>
+</body>
+</html>
